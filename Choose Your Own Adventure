@@ -1,0 +1,52 @@
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*    Module:       main.cpp                                                  */
+/*    Author:       C:\Users\99721924                                         */
+/*    Created:      Tue Mar 01 2022                                           */
+/*    Description:  V5 project                                                */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Drivetrain           drivetrain    6, 3, 5, 4      
+// ---- END VEXCODE CONFIGURED DEVICES ----
+
+#include "vex.h"
+
+using namespace vex;
+
+competition Competition;
+
+void pre_auton(void) {
+  vexcodeInit();
+}
+
+void autonomous(void){
+  //Move forward
+  Drivetrain.setDriveVelocity(120, percent);
+  Drivetrain.setTurnVelocity(100, percent);
+  Drivetrain.driveFor(forward, 44, inches);
+  Drivetrain.turnFor(right, 250, degrees);
+  Drivetrain.driveFor(forward, 187.7, inches);
+  Drivetrain.setTimeout(1, seconds);
+  Drivetrain.driveFor(reverse, 10, inches);
+  Drivetrain.turnFor(left, 280, degrees);
+  Drivetrain.driveFor(reverse, 62, inches);
+
+  
+}
+
+int main() {
+  // Initializing Robot Configuration. DO NOT REMOVE!
+  Competition.autonomous(autonomous);
+
+  pre_auton();
+
+  while(true) {
+    wait(100, msec);
+  }
+  vexcodeInit();
+}
+
